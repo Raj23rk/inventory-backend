@@ -12,7 +12,9 @@ app.use(express.json());
 
 // Error handler
 app.use(errorHandler);
-
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
 // Routes
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/categories", require("./routes/category.routes"));
