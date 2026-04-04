@@ -10,14 +10,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Error handler
-app.use(errorHandler);
+// Root route
 app.get("/", (req, res) => {
   res.send("API is running");
 });
+
 // Routes
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/categories", require("./routes/category.routes"));
 app.use("/api/items", require("./routes/item.routes"));
 
-module.exports = app; 
+// Error handler (must be AFTER routes)
+app.use(errorHandler);
+
+module.exports = app;
